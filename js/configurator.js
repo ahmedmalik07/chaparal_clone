@@ -361,16 +361,11 @@
     // CHECKBOX OPTIONS
     // ============================================
     function setupCheckboxOptions() {
-        const labels = document.querySelectorAll('.checkbox-option');
-        console.log('[Configurator] Checkbox options found:', labels.length);
+        const items = document.querySelectorAll('.checkbox-option');
+        console.log('[Configurator] Checkbox options found:', items.length);
 
-        labels.forEach(function(label) {
-            label.addEventListener('click', function(e) {
-                // preventDefault stops the native <label> from also toggling the checkbox
-                // so we get exactly ONE toggle per click (our manual one)
-                e.preventDefault();
-                e.stopPropagation();
-
+        items.forEach(function(item) {
+            item.addEventListener('click', function() {
                 if (this.classList.contains('disabled')) return;
 
                 var cb = this.querySelector('input[type="checkbox"]');
