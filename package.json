@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "npx live-server --port=8089 --no-browser",
-    "serve": "python3 -m http.server 8089",
+    "predev": "fuser -k 8089/tcp 8090/tcp 2>/dev/null || true",
+    "dev": "concurrently -k -n frontend,backend -c cyan,magenta \"npx live-server --port=8089 --no-browser\" \"server/venv/bin/python -m uvicorn app:app --host 0.0.0.0 --port 8090 --reload --app-dir server\"",
+    "dev:frontend": "npx live-server --port=8089 --no-browser",
+    "dev:backend": "server/venv/bin/python -m uvicorn app:app --host 0.0.0.0 --port 8090 --reload --app-dir server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,5 +15,8 @@
   "description": "",
   "dependencies": {
     "puppeteer-core": "^24.37.5"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }

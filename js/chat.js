@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────
-   Stingray Boats — AI Chat Panel
+   Stingray Boats — AI Chat Panel (Right Sidebar)
    Talks to FastAPI backend on port 8090
    ───────────────────────────────────────────── */
 (function () {
@@ -24,16 +24,27 @@
     let sessionId = null;       // active build session
     let busy = false;
 
-    // ── Open / Close ──────────────────────────
-    fab.addEventListener("click", () => {
-        panel.classList.remove("hidden");
-        fab.classList.add("hidden");
-        input.focus();
-    });
-    closeBtn.addEventListener("click", () => {
-        panel.classList.add("hidden");
-        fab.classList.remove("hidden");
-    });
+    // ── Create mobile backdrop ────────────────
+    const backdrop = document.createElement("div");
+    backdrop.className = "chat-backdrop";
+    document.body.appendChild(backdrop);
+
+    // ── Mobile open / close (< 1024px) ────────
+    if (fab) {
+        fab.addEventListener("click", () => {
+            panel.classList.add("open");
+            backdrop.classList.add("visible");
+            fab.classList.add("hidden");
+            input.focus();
+        });
+    }
+    function closeMobileChat() {
+        panel.classList.remove("open");
+        backdrop.classList.remove("visible");
+        if (fab) fab.classList.remove("hidden");
+    }
+    if (closeBtn) closeBtn.addEventListener("click", closeMobileChat);
+    backdrop.addEventListener("click", closeMobileChat);
 
     // ── Mode toggle ───────────────────────────
     modeBtns.forEach(btn => {

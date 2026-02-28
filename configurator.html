@@ -6,8 +6,8 @@
     <title>Stingray Boats :: Boat Builder</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/configurator.css?v=4">
-    <link rel="stylesheet" href="css/chat.css?v=1">
+    <link rel="stylesheet" href="css/configurator.css?v=5">
+    <link rel="stylesheet" href="css/chat.css?v=2">
 </head>
 <body>
     
@@ -555,9 +555,47 @@
             </div>
 
         </main>
+
+        <!-- RIGHT SIDEBAR - AI Chat Panel -->
+        <aside id="chat-panel" class="chat-panel">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <i class="fa-solid fa-robot"></i>
+                    <span>Stingray AI</span>
+                </div>
+                <button id="chat-close" class="chat-close lg-hidden"><i class="fa fa-times"></i></button>
+            </div>
+            <div class="chat-mode-toggle">
+                <button class="mode-btn active" data-mode="ask">
+                    <i class="fa-solid fa-message"></i> Ask Me
+                </button>
+                <button class="mode-btn" data-mode="build">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Build With Me
+                </button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-msg bot">
+                    <div class="msg-content">Hi! I'm your Stingray Boats AI assistant.<br><br>
+                    <b>Ask Me</b> — questions about models, options, pricing.<br>
+                    <b>Build With Me</b> — describe what you want and I'll configure it for you.</div>
+                </div>
+            </div>
+            <div id="chat-confirm-bar" class="chat-confirm-bar hidden">
+                <span>Apply these changes?</span>
+                <button id="confirm-yes" class="confirm-btn yes">Yes, apply</button>
+                <button id="confirm-no" class="confirm-btn no">No thanks</button>
+            </div>
+            <form id="chat-form" class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Ask about boats or describe your ideal setup…" autocomplete="off">
+                <button type="submit" id="chat-send"><i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </aside>
     </div>
 
-    <!-- Standards Modal -->
+    <!-- Mobile FAB to open chat -->
+    <button id="chat-fab" class="chat-fab" title="AI Assistant">
+        <i class="fa-solid fa-comments"></i>
+    </button>
     <div class="modal-overlay" id="standards-modal" style="display:none;">
         <div class="modal-content">
             <button class="modal-close" id="modal-close"><i class="fa fa-times"></i></button>
@@ -682,42 +720,7 @@
         <button id="cookie-accept" class="btn-accept">ACCEPT</button>
     </div>
 
-    <!-- ======= AI Chat Panel ======= -->
-    <button id="chat-fab" class="chat-fab" title="AI Assistant">
-        <i class="fa-solid fa-comments"></i>
-    </button>
-
-    <div id="chat-panel" class="chat-panel hidden">
-        <div class="chat-header">
-            <div class="chat-title">
-                <i class="fa-solid fa-robot"></i>
-                <span>Stingray AI</span>
-            </div>
-            <div class="chat-mode-toggle">
-                <button class="mode-btn active" data-mode="ask">Ask</button>
-                <button class="mode-btn" data-mode="build">Build</button>
-            </div>
-            <button id="chat-close" class="chat-close"><i class="fa fa-times"></i></button>
-        </div>
-        <div class="chat-messages" id="chat-messages">
-            <div class="chat-msg bot">
-                <div class="msg-content">Hi! I'm your Stingray Boats AI assistant.<br><br>
-                <b>Ask Mode</b> — ask me anything about models, options, pricing.<br>
-                <b>Build Mode</b> — tell me what you want and I'll configure the boat for you.</div>
-            </div>
-        </div>
-        <div id="chat-confirm-bar" class="chat-confirm-bar hidden">
-            <span>Apply these changes?</span>
-            <button id="confirm-yes" class="confirm-btn yes">Yes, apply</button>
-            <button id="confirm-no" class="confirm-btn no">No thanks</button>
-        </div>
-        <form id="chat-form" class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Ask about boats or describe your ideal setup…" autocomplete="off">
-            <button type="submit" id="chat-send"><i class="fa-solid fa-paper-plane"></i></button>
-        </form>
-    </div>
-
-    <script src="js/configurator.js?v=4"></script>
-    <script src="js/chat.js?v=1"></script>
+    <script src="js/configurator.js?v=5"></script>
+    <script src="js/chat.js?v=2"></script>
 </body>
 </html>

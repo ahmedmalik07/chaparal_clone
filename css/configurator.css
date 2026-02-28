@@ -1082,6 +1082,11 @@ body {
         height: 50vh;
     }
 
+    /* Chat panel hides in flow on mobile — handled by chat.css overlay */
+    .chat-panel {
+        order: 3;
+    }
+
     .model-info-desktop {
         display: none;
     }
