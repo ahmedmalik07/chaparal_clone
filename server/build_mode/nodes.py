@@ -1,13 +1,17 @@
 """
 Build Mode Nodes — The 7 async functions that make up the LangGraph agent.
 Each node receives and returns a partial BuildState dict.
+Optimised: only ONE LLM call (recommend), eliminated LangGraph overhead."""
 """
 
-import os, json
+import os, re, json
 from anthropic import AsyncAnthropic
 from .state import BuildState, ToolCall
 
 client = AsyncAnthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+# ── Model — keep Sonnet but we eliminated 3 of 4 LLM calls ──
+_MODEL = "claude-sonnet-4-20250514"
 
 
 # ── Helpers ───────────────────────────────────────────────────
@@ -25,10 +29,10 @@ def _catalog_to_text(catalog: dict) -> str:
 
 
 async def _llm(system: str, user: str, expect_json: bool = False) -> str:
-    """Call Anthropic Claude with retry."""
+    """Call Anthropic Claude Sonnet — fast structured output."""
     resp = await client.messages.create(
-        model="claude-sonnet-4-20250514",
-        max_tokens=1024,
+        model=_MODEL,
+        max_tokens=4096,
         system=system,
         messages=[{"role": "user", "content": user}],
     )
@@ -45,31 +49,28 @@ async def _llm(system: str, user: str, expect_json: bool = False) -> str:
     return text
 
 
-# ── Node 1: Parse Intent ─────────────────────────────────────
+# ── Node 1: Parse Intent (NO LLM — fast keyword parsing) ─────
 async def intent_classify(state: BuildState) -> dict:
-    """Parse user's natural language request into structured intent."""
-    system = """You are a boat configurator assistant. Parse the user's request into a structured JSON response.
-Respond ONLY with JSON, no other text.
+    """Fast keyword-based intent parsing. No LLM call needed."""
+    msg = state["user_message"]
+    lower = msg.lower()
 
-Format:
-{
-  "parsed_request": "brief description of what user wants",
-  "budget": null or integer (if user mentions a budget/price limit),
-  "is_clear": true/false (is the request clear enough to make recommendations?)
-}"""
-
-    user = f"User request: {state['user_message']}\n\nCurrent selections: {json.dumps(state.get('current_selections', {}))}"
-    text = await _llm(system, user, expect_json=True)
-
-    try:
-        parsed = json.loads(text)
-    except json.JSONDecodeError:
-        parsed = {"parsed_request": state["user_message"], "budget": None, "is_clear": True}
+    # Extract budget if mentioned (e.g. "budget $50000", "under 40k", "$30,000 max")
+    budget = None
+    m = re.search(r'(?:budget|max|limit|under|below|within)\s*\$?([\d,]+)\s*k?', lower)
+    if m:
+        val = int(m.group(1).replace(",", ""))
+        budget = val * 1000 if val < 1000 else val
+    else:
+        m = re.search(r'\$\s*([\d,]+)\s*k?', lower)
+        if m:
+            val = int(m.group(1).replace(",", ""))
+            budget = val * 1000 if val < 1000 else val
 
     return {
-        "parsed_request": parsed.get("parsed_request", state["user_message"]),
-        "budget": parsed.get("budget"),
-        "needs_clarification": not parsed.get("is_clear", True),
+        "parsed_request": msg,
+        "budget": budget,
+        "needs_clarification": False,   # always clear — let recommend handle ambiguity
     }
 
 
@@ -98,27 +99,21 @@ async def gather_context(state: BuildState) -> dict:
 
 # ── Node 3: Clarify ──────────────────────────────────────────
 async def clarify(state: BuildState) -> dict:
-    """If request is ambiguous, generate a clarifying question."""
+    """Skip clarification — intent_classify always marks requests as clear."""
     if not state.get("needs_clarification"):
         return {"needs_clarification": False}
 
-    # If user already answered a clarification
+    # If user already answered a previous clarification
     if state.get("clarification_answer"):
         return {
             "needs_clarification": False,
             "parsed_request": state["parsed_request"] + " — User clarified: " + state["clarification_answer"],
         }
 
-    system = """You are a boat configurator. The user's request is ambiguous.
-Generate ONE short clarifying question. Be specific and offer 2-3 concrete options.
-Respond as plain text, not JSON."""
-
-    user = f"Request: {state['parsed_request']}\n\nAvailable options:\n{state['catalog_context']}"
-    question = await _llm(system, user)
-
+    # Fallback: generate a quick clarifying question (only if explicitly flagged)
     return {
         "needs_clarification": True,
-        "clarification_question": question,
+        "clarification_question": "Could you tell me more about what you'd like to configure?",
     }
 
 
@@ -163,11 +158,22 @@ RULES:
         if not isinstance(changes, list):
             changes = [changes]
     except json.JSONDecodeError:
-        return {
-            "proposed_changes": [],
-            "recommendation_text": "I couldn't generate specific recommendations. Could you rephrase your request?",
-            "is_valid": False,
-        }
+        # Try to salvage truncated JSON — find last complete object
+        try:
+            last_brace = text.rfind("}")
+            if last_brace > 0:
+                truncated = text[:last_brace + 1] + "]"
+                changes = json.loads(truncated)
+                if not isinstance(changes, list):
+                    changes = [changes]
+            else:
+                raise ValueError("No valid JSON found")
+        except (json.JSONDecodeError, ValueError):
+            return {
+                "proposed_changes": [],
+                "recommendation_text": "I couldn't generate specific recommendations. Could you rephrase your request?",
+                "is_valid": False,
+            }
 
     # Build recommendation text
     lines = ["Here's what I recommend:\n"]
@@ -187,7 +193,7 @@ RULES:
         "proposed_changes": changes,
         "recommendation_text": "\n".join(lines),
         "price_delta": total_delta,
-        "retries": state.get("retries", 0),
+        "retries": state.get("retries", 0) + 1,   # ← FIX: increment to prevent infinite retry loop
     }
 
 
