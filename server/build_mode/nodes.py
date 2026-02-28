@@ -1,17 +1,20 @@
 """
 Build Mode Nodes — The 7 async functions that make up the LangGraph agent.
 Each node receives and returns a partial BuildState dict.
-Optimised: only ONE LLM call (recommend), eliminated LangGraph overhead."""
+Optimised: only ONE LLM call (recommend), eliminated LangGraph overhead.
 """
 
 import os, re, json
 from anthropic import AsyncAnthropic
+from openai import AsyncOpenAI
 from .state import BuildState, ToolCall
 
-client = AsyncAnthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+anthropic_client = AsyncAnthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# ── Model — keep Sonnet but we eliminated 3 of 4 LLM calls ──
-_MODEL = "claude-sonnet-4-20250514"
+# ── Models ────────────────────────────────────────────────────
+_ANTHROPIC_MODEL = "claude-sonnet-4-20250514"
+_OPENAI_MODEL = "gpt-4o"
 
 
 # ── Helpers ───────────────────────────────────────────────────
@@ -29,14 +32,37 @@ def _catalog_to_text(catalog: dict) -> str:
 
 
 async def _llm(system: str, user: str, expect_json: bool = False) -> str:
-    """Call Anthropic Claude Sonnet — fast structured output."""
-    resp = await client.messages.create(
-        model=_MODEL,
-        max_tokens=4096,
-        system=system,
-        messages=[{"role": "user", "content": user}],
-    )
-    text = resp.content[0].text.strip()
+    """Call LLM — tries Anthropic first, falls back to OpenAI."""
+    text = None
+
+    # Try Anthropic first
+    try:
+        resp = await anthropic_client.messages.create(
+            model=_ANTHROPIC_MODEL,
+            max_tokens=4096,
+            system=system,
+            messages=[{"role": "user", "content": user}],
+        )
+        text = resp.content[0].text.strip()
+    except Exception as e:
+        print(f"[build] Anthropic failed: {e}")
+
+    # Fallback to OpenAI
+    if text is None:
+        try:
+            resp = await openai_client.chat.completions.create(
+                model=_OPENAI_MODEL,
+                max_tokens=4096,
+                messages=[
+                    {"role": "system", "content": system},
+                    {"role": "user", "content": user},
+                ],
+            )
+            text = resp.choices[0].message.content.strip()
+        except Exception as e:
+            print(f"[build] OpenAI also failed: {e}")
+            raise RuntimeError("Both AI providers failed. Please check your API keys.")
+
     if expect_json:
         # Extract JSON from possible markdown code fences
         if "```" in text:
