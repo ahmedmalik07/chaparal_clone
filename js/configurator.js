@@ -361,27 +361,34 @@
     // CHECKBOX OPTIONS
     // ============================================
     function setupCheckboxOptions() {
-        const checkboxes = document.querySelectorAll('.checkbox-option input[type="checkbox"]');
-        console.log('[Configurator] Checkboxes found:', checkboxes.length);
+        const labels = document.querySelectorAll('.checkbox-option');
+        console.log('[Configurator] Checkbox options found:', labels.length);
 
-        checkboxes.forEach(function(checkbox) {
-            checkbox.addEventListener('change', function() {
-                const parentLabel = this.closest('.checkbox-option');
-                const optId = parentLabel.dataset.id;
-                selectedOptions.checkboxes[optId] = this.checked;
-                console.log('[Configurator] Checkbox', optId, ':', this.checked);
+        labels.forEach(function(label) {
+            label.addEventListener('click', function(e) {
+                // preventDefault stops the native <label> from also toggling the checkbox
+                // so we get exactly ONE toggle per click (our manual one)
+                e.preventDefault();
+                e.stopPropagation();
 
-                var optText = parentLabel.querySelector('.option-text');
-                showStatus((this.checked ? 'Added' : 'Removed') + ': ' + (optText ? optText.textContent : optId));
+                if (this.classList.contains('disabled')) return;
+
+                var cb = this.querySelector('input[type="checkbox"]');
+                if (!cb) return;
+
+                cb.checked = !cb.checked;
+
+                var optId = this.dataset.id;
+                selectedOptions.checkboxes[optId] = cb.checked;
+                console.log('[Configurator] Checkbox', optId, ':', cb.checked);
+
+                var optText = this.querySelector('.option-text');
+                showStatus((cb.checked ? 'Added' : 'Removed') + ': ' + (optText ? optText.textContent : optId));
 
                 updatePrice();
                 updateBoatImage();
             });
         });
-
-        // NOTE: No manual label click handler needed.
-        // The <label> element natively toggles its child <input type="checkbox"> on click.
-        // Adding a manual toggle would cause double-toggling (native + manual = net zero change).
     }
 
     // ============================================
