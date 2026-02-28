@@ -379,19 +379,9 @@
             });
         });
 
-        // Also handle clicks on the label itself (for better click targets)
-        document.querySelectorAll('.checkbox-option').forEach(function(label) {
-            label.addEventListener('click', function(e) {
-                // Only toggle if the click wasn't directly on the checkbox
-                if (e.target.type !== 'checkbox') {
-                    var cb = this.querySelector('input[type="checkbox"]');
-                    if (cb && !this.classList.contains('disabled')) {
-                        cb.checked = !cb.checked;
-                        cb.dispatchEvent(new Event('change', { bubbles: true }));
-                    }
-                }
-            });
-        });
+        // NOTE: No manual label click handler needed.
+        // The <label> element natively toggles its child <input type="checkbox"> on click.
+        // Adding a manual toggle would cause double-toggling (native + manual = net zero change).
     }
 
     // ============================================
