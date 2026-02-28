@@ -94,6 +94,9 @@
         checkboxes: {}
     };
 
+    // Expose to window for chat panel integration
+    window.selectedOptions = selectedOptions;
+
     // ============================================
     // INITIALIZATION
     // ============================================

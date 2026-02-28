@@ -3,3 +3,7 @@ package-lock.json
 .DS_Store
 *.log
 /tmp/
+server/venv/
+server/.env
+__pycache__/
+*.pyc

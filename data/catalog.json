@@ -1,0 +1,224 @@
+{
+  "models": {
+    "19ssiob": {
+      "name": "19 SSi OB",
+      "slug": "19ssiob",
+      "category": "Sport Boats",
+      "base_price": 49955,
+      "msrp": 64130,
+      "specs": {
+        "length": "19'3\"",
+        "beam": "8'0\"",
+        "max_hp": 150,
+        "weight": "2,800 lbs",
+        "capacity": "9 persons",
+        "fuel": "42 gal",
+        "deadrise": "18°"
+      },
+      "tagline": "The perfect entry-level sport boat for families",
+      "description": "The 19 SSi OB delivers big-boat features in a nimble, easy-to-trailer package. Powered by outboard engines up to 150HP.",
+      "best_for": "Day cruising, watersports, family fun"
+    },
+    "21ssiob": {
+      "name": "21 SSi OB",
+      "slug": "21ssiob",
+      "category": "Sport Boats",
+      "base_price": 59455,
+      "msrp": 76230,
+      "specs": {
+        "length": "21'5\"",
+        "beam": "8'6\"",
+        "max_hp": 200,
+        "weight": "3,200 lbs",
+        "capacity": "11 persons",
+        "fuel": "52 gal",
+        "deadrise": "19°"
+      },
+      "tagline": "More space, more power, more fun",
+      "description": "Step up to the 21 SSi OB for extra room and performance. Perfect for larger families and serious watersports enthusiasts.",
+      "best_for": "Watersports, entertaining, cruising"
+    },
+    "23ssiob": {
+      "name": "23 SSi OB",
+      "slug": "23ssiob",
+      "category": "Sport Boats",
+      "base_price": 72455,
+      "msrp": 92130,
+      "specs": {
+        "length": "23'0\"",
+        "beam": "8'6\"",
+        "max_hp": 250,
+        "weight": "3,800 lbs",
+        "capacity": "13 persons",
+        "fuel": "62 gal",
+        "deadrise": "20°"
+      },
+      "tagline": "The flagship SSi outboard experience",
+      "description": "The 23 SSi OB is the ultimate sport boat with premium features, maximum space, and powerful engine options up to 250HP.",
+      "best_for": "Premium cruising, large groups, watersports"
+    }
+  },
+  "option_groups": {
+    "white-hull": {
+      "label": "White Hull / Deck Accent",
+      "section": "exterior",
+      "type": "single_required",
+      "options": [
+        {"id": "wh-black", "label": "White Hull - Black Accent", "price": 0, "graphic": "deckacc_black", "default": true},
+        {"id": "wh-blue", "label": "White Hull - Biscayne Blue Accent", "price": 0, "graphic": "deckacc_blue"},
+        {"id": "wh-alloy", "label": "White Hull - Alloy Gray Accent", "price": 0, "graphic": "deckacc_alloy"},
+        {"id": "wh-atlas", "label": "White Hull - Atlas Blue Accent", "price": 0, "graphic": "deckacc_atlas"}
+      ]
+    },
+    "hull-side": {
+      "label": "Hull Side Color",
+      "section": "exterior",
+      "type": "single_optional",
+      "options": [
+        {"id": "hs-black", "label": "Black Hull Side", "price": 0, "graphic": "hullside_black"},
+        {"id": "hs-blue", "label": "Biscayne Blue Hull Side", "price": 0, "graphic": "hullside_blue"},
+        {"id": "hs-alloy", "label": "Alloy Gray Hull Side", "price": 0, "graphic": "hullside_alloy"},
+        {"id": "hs-atlas", "label": "Atlas Blue Hull Side", "price": 0, "graphic": "hullside_atlas"}
+      ]
+    },
+    "vx-sport": {
+      "label": "VX Sport Graphics",
+      "section": "exterior",
+      "type": "single_optional",
+      "options": [
+        {"id": "vx-whtgray", "label": "VX Sport - White/Gray", "price": 830, "graphic": "vxsport_whtgray"},
+        {"id": "vx-whtred", "label": "VX Sport - White/Red", "price": 830, "graphic": "vxsport_whtred"},
+        {"id": "vx-blkgray", "label": "VX Sport - Black/Gray", "price": 830, "graphic": "vxsport_blkgray"},
+        {"id": "vx-blkred", "label": "VX Sport - Black/Red", "price": 830, "graphic": "vxsport_blkred"}
+      ]
+    },
+    "engine": {
+      "label": "Engine",
+      "section": "power",
+      "type": "single_required",
+      "options": [
+        {"id": "eng-yamaha-115", "label": "Yamaha F115XB 115HP 25\"", "price": 48895, "graphic": "yamaha_grayXB", "mfg": "yamaha", "default": true},
+        {"id": "eng-yamaha-115-wht", "label": "Yamaha F115XB2 115HP White 25\"", "price": 49395, "graphic": "", "mfg": "yamaha"},
+        {"id": "eng-yamaha-150", "label": "Yamaha F150XD 150HP 25\" with Hydraulic Steering", "price": 53595, "graphic": "yamaha_grayXC", "mfg": "yamaha"},
+        {"id": "eng-mercury-115", "label": "Mercury Command Thrust EXLPT EFI 115HP 25\"", "price": 49795, "graphic": "", "mfg": "mercury"},
+        {"id": "eng-mercury-150", "label": "Mercury 150XL 150HP 25\"", "price": 53695, "graphic": "", "mfg": "mercury"}
+      ]
+    },
+    "propeller": {
+      "label": "Propeller Upgrades",
+      "section": "power",
+      "type": "multi_optional",
+      "options": [
+        {"id": "prop-yamaha-115", "label": "Stainless Steel Prop - Yamaha 115HP", "price": 555, "engine_req": "yamaha"},
+        {"id": "prop-yamaha-150", "label": "Stainless Steel Prop - Yamaha 150HP", "price": 555, "engine_req": "yamaha"},
+        {"id": "prop-mercury-115", "label": "Stainless Steel Prop - Mercury 115HP", "price": 835, "engine_req": "mercury"},
+        {"id": "prop-mercury-150", "label": "Stainless Steel Prop - Mercury 150HP", "price": 835, "engine_req": "mercury"}
+      ]
+    },
+    "interior-color": {
+      "label": "Cockpit Interior Color",
+      "section": "interior",
+      "type": "single_required",
+      "options": [
+        {"id": "int-sterling", "label": "Sterling", "price": 0, "graphic": "", "default": true},
+        {"id": "int-cayenne", "label": "Cayenne White Storm", "price": 265, "graphic": "interior_cayenne"}
+      ]
+    },
+    "canvas-color": {
+      "label": "Canvas Color",
+      "section": "canvas",
+      "type": "single_required",
+      "options": [
+        {"id": "canvas-black", "label": "Black Canvas", "price": 0, "default": true},
+        {"id": "canvas-gray", "label": "Seal Gray Canvas", "price": 0}
+      ]
+    },
+    "canvas-options": {
+      "label": "Canvas Options",
+      "section": "canvas",
+      "type": "multi_optional",
+      "options": [
+        {"id": "bimini-top", "label": "Bimini Top with Boot", "price": 2995},
+        {"id": "bow-cover", "label": "Bow Cover / Tonneau Cover", "price": 690},
+        {"id": "cockpit-cover", "label": "Cockpit Cover", "price": 1255},
+        {"id": "full-cover", "label": "Full Cover - OB", "price": 1520}
+      ]
+    },
+    "electronics": {
+      "label": "Electronics",
+      "section": "electronics",
+      "type": "multi_optional",
+      "options": [
+        {"id": "garmin-7", "label": "Garmin ECHOMAP UHD2 7\" Chartplotter/Fishfinder", "price": 2430},
+        {"id": "garmin-9", "label": "Garmin ECHOMAP UHD2 9\" Chartplotter/Fishfinder", "price": 3035},
+        {"id": "stereo-upgrade", "label": "JL Audio Premium Stereo Upgrade", "price": 1545},
+        {"id": "sub-amp", "label": "JL Audio Subwoofer & Amplifier", "price": 1115}
+      ]
+    },
+    "accessories": {
+      "label": "Accessories",
+      "section": "accessories",
+      "type": "multi_optional",
+      "options": [
+        {"id": "ski-tow", "label": "Ski Tow Bar", "price": 670},
+        {"id": "table", "label": "Removable Cockpit Table", "price": 580},
+        {"id": "shower", "label": "Transom Freshwater Shower", "price": 505},
+        {"id": "underwater-lights", "label": "LED Underwater Lights (pair)", "price": 1170},
+        {"id": "snap-carpet", "label": "Snap-in Cockpit Carpet", "price": 700},
+        {"id": "depth-ff", "label": "Depth / Fish Finder Transducer", "price": 260}
+      ]
+    },
+    "trailer": {
+      "label": "Trailer Selection",
+      "section": "trailer",
+      "type": "single_required",
+      "options": [
+        {"id": "trailer-std", "label": "Standard Black Powder Coated Single Axle", "price": 0, "graphic": "std_trailer", "default": true},
+        {"id": "trailer-alm-single", "label": "Aluminum Single Axle", "price": 2265, "graphic": "alm_trailer_single"},
+        {"id": "trailer-blk", "label": "Black Powder Coated Upgrade", "price": 620, "graphic": "blk_trailer"}
+      ]
+    },
+    "trailer-options": {
+      "label": "Trailer Options",
+      "section": "trailer",
+      "type": "multi_optional",
+      "options": [
+        {"id": "spare-tire", "label": "Spare Tire and Mount", "price": 345},
+        {"id": "side-guides", "label": "Side Guides", "price": 285, "graphic": "side_guides"}
+      ]
+    }
+  },
+  "standard_features": [
+    "Color Selection for Hull Side Gelcoat with Color Matched Deck Accent Graphics",
+    "Three Blade Aluminum Prop",
+    "Aluminum Switch Panels with Toggle Switches",
+    "Bay Star Hydraulic Tilt Steering Helm",
+    "Custom Molded Fiberglass Dash",
+    "DC Power Plug - 12volt",
+    "Digital Depth Gauge",
+    "Digital Hour Meter",
+    "Digital Instrumentation",
+    "Polished Spoke Steering Wheel",
+    "Bow Cushions with Storage Underneath",
+    "Built in Cooler (70-Quart) Under Rear Bench Seat",
+    "Cockpit Drainage System (CDS)",
+    "Cockpit LED Lighting",
+    "Diamond Pattern Non-Skid Surfaces",
+    "Premium Stain Resistant Silicone Cockpit Fabric",
+    "Stainless Steel Cockpit Grab Handles",
+    "Stainless Steel Drinkholders (8)",
+    "Stereo System - AM/FM, Bluetooth Radio",
+    "Wrap Around Walk-Thru Windshield",
+    "Battery On/Off Switch",
+    "Bilge Pump - Automatic",
+    "Extended V-Plane Hull",
+    "Kevlar Re-inforced Hull Laminate",
+    "Lifetime Limited Hull Warranty",
+    "Navigational Lights - LED",
+    "NMMA Certified using ABYC Standards",
+    "Stainless Steel Hardware",
+    "Shipping Cover",
+    "Black Powder Coated Single Axle Trailer with 15\" Galvanized Wheels, Disc Brakes, Folding Tongue Jack, LED Lights, Swing-Away Tongue"
+  ],
+  "saved_builds": []
+}
