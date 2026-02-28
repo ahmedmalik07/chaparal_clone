@@ -1,0 +1,17 @@
+{
+  "name": "chaparal_clone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx live-server --port=8089 --no-browser",
+    "serve": "python3 -m http.server 8089",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "puppeteer-core": "^24.37.5"
+  }
+}

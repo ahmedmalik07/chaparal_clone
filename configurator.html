@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stingray Boats :: Boat Builder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/configurator.css">
+</head>
+<body>
+    
+    <!-- Close Button -->
+    <button id="close-configurator" class="close-btn" title="Close Builder">
+        <i class="fa fa-times"></i>
+    </button>
+
+    <div class="configurator-wrapper">
+        
+        <!-- LEFT SIDEBAR - Options Panel -->
+        <aside id="options-panel" class="options-panel">
+            
+            <!-- Dropdown section selector -->
+            <div class="section-dropdown" id="section-dropdown">
+                <div class="dropdown-trigger" id="dropdown-trigger">
+                    <span id="current-section-name">EXTERIOR COLORS/GRAPHICS</span>
+                    <img src="https://www.chaparralboats.com/images/icons/drop_down_arrow_W.png" alt="Dropdown" class="dropdown-arrow">
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <div class="dropdown-item active" data-section="exterior">EXTERIOR COLORS/GRAPHICS</div>
+                    <div class="dropdown-item" data-section="power">POWER</div>
+                    <div class="dropdown-item" data-section="interior">COCKPIT INTERIOR</div>
+                    <div class="dropdown-item" data-section="canvas">CANVAS</div>
+                    <div class="dropdown-item" data-section="electronics">ELECTRONICS</div>
+                    <div class="dropdown-item" data-section="accessories">ACCESSORIES</div>
+                    <div class="dropdown-item" data-section="trailer">TRAILER</div>
+                </div>
+            </div>
+
+            <!-- Scrollable Options List -->
+            <div class="options-list" id="options-list">
+                
+                <!-- ============== EXTERIOR COLORS/GRAPHICS ============== -->
+                <div class="option-section active" id="section-exterior">
+                    <h2 class="option-section-title">Exterior Colors/Graphics</h2>
+
+                    <!-- White Hull Group -->
+                    <div class="option-group">
+                        <div class="option-group-header">
+                            <h3>White Hull</h3>
+                            <span class="option-group-label">BLACK</span>
+                        </div>
+                        <div class="option-swatches" data-group="white-hull" data-type="radio">
+                            <div class="swatch selected" data-id="wh-black" data-graphic="deckacc_black" data-profile="white_hull" data-hull="white">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/h2o/w_black.jpg" alt="White Hull - Black">
+                                <span class="swatch-label">White Hull</span>
+                            </div>
+                            <div class="swatch" data-id="wh-blue" data-graphic="deckacc_blue" data-profile="white_hull" data-hull="white">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/h2o/w_blue.jpg" alt="White Hull - Blue">
+                                <span class="swatch-label">White Hull</span>
+                            </div>
+                            <div class="swatch" data-id="wh-alloy" data-graphic="deckacc_alloy" data-profile="white_hull" data-hull="white">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/h2o/w_alloy.jpg" alt="White Hull - Alloy">
+                                <span class="swatch-label">White Hull</span>
+                            </div>
+                            <div class="swatch" data-id="wh-atlas" data-graphic="deckacc_atlas" data-profile="white_hull" data-hull="white">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/ssi/white_atlas.jpg" alt="White Hull - Atlas">
+                                <span class="swatch-label">White Hull</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hull Side Group -->
+                    <div class="option-group">
+                        <div class="option-group-header">
+                            <h3>Hull Side</h3>
+                        </div>
+                        <div class="option-swatches" data-group="hull-side" data-type="radio">
+                            <div class="swatch" data-id="hs-black" data-graphic="hullside_black">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/h2o/wb_black.jpg" alt="Hull Side - Black">
+                                <span class="swatch-label">Black</span>
+                            </div>
+                            <div class="swatch" data-id="hs-blue" data-graphic="hullside_blue">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/h2o/wb_blue.jpg" alt="Hull Side - Blue">
+                                <span class="swatch-label">Biscayne Blue</span>
+                            </div>
+                            <div class="swatch" data-id="hs-alloy" data-graphic="hullside_alloy">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/h2o/wb_alloy.png" alt="Hull Side - Alloy">
+                                <span class="swatch-label">Alloy Gray</span>
+                            </div>
+                            <div class="swatch" data-id="hs-atlas" data-graphic="hullside_atlas">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/ssi/wb_atlas.jpg" alt="Hull Side - Atlas Blue">
+                                <span class="swatch-label">Atlas Blue</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VX Sport Group -->
+                    <div class="option-group">
+                        <div class="option-group-header">
+                            <h3>VX Sport</h3>
+                        </div>
+                        <div class="option-swatches" data-group="vx-sport" data-type="single">
+                            <div class="swatch has-price" data-id="vx-whtgray" data-graphic="vxsport_whtgray" data-price="440">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/h2o/gfx_w_alloy.jpg" alt="VX Sport - White/Alloy Gray">
+                                <span class="swatch-price">$440</span>
+                                <span class="swatch-label">White/Alloy Gray</span>
+                            </div>
+                            <div class="swatch has-price" data-id="vx-whtred" data-graphic="vxsport_whtred" data-price="440">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/h2o/gfx_w_red.jpg" alt="VX Sport - White/Red">
+                                <span class="swatch-price">$440</span>
+                                <span class="swatch-label">White/Red</span>
+                            </div>
+                            <div class="swatch has-price" data-id="vx-blkgray" data-graphic="vxsport_blkgray" data-price="440">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/h2o/gfx_b_alloy.jpg" alt="VX Sport - Black/Alloy Gray">
+                                <span class="swatch-price">$440</span>
+                                <span class="swatch-label">Black/Alloy Gray</span>
+                            </div>
+                            <div class="swatch has-price" data-id="vx-blkred" data-graphic="vxsport_blkred" data-price="440">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/h2o/gfx_b_red.jpg" alt="VX Sport - Black/Red">
+                                <span class="swatch-price">$440</span>
+                                <span class="swatch-label">Black/Red</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ============== POWER ============== -->
+                <div class="option-section" id="section-power">
+                    <h2 class="option-section-title">Power</h2>
+                    
+                    <!-- Engine Selection -->
+                    <div class="option-group">
+                        <div class="option-group-header">
+                            <h3>Engine</h3>
+                        </div>
+                        <div class="engine-options" data-group="engine" data-type="radio">
+                            
+                            <div class="engine-option selected" data-id="eng-yamaha-115" data-graphic="yamaha_grayXB" data-price="48895" data-mfg="yamaha">
+                                <div class="engine-check"><i class="fa fa-check-square"></i></div>
+                                <div class="engine-logo">
+                                    <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/yamaha.jpg" alt="Yamaha" onerror="this.parentElement.innerHTML='<span class=\'engine-brand\'>YAMAHA</span>'">
+                                </div>
+                                <div class="engine-info">
+                                    <span class="engine-name">YAMAHA FOUR STROKE</span>
+                                    <span class="engine-detail">F115XB 115HP 25"</span>
+                                </div>
+                                <div class="engine-price">$48,895</div>
+                            </div>
+
+                            <div class="engine-option" data-id="eng-yamaha-115-wht" data-graphic="" data-price="49395" data-mfg="yamaha">
+                                <div class="engine-check"><i class="fa fa-check-square"></i></div>
+                                <div class="engine-logo">
+                                    <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/yamaha.jpg" alt="Yamaha" onerror="this.parentElement.innerHTML='<span class=\'engine-brand\'>YAMAHA</span>'">
+                                </div>
+                                <div class="engine-info">
+                                    <span class="engine-name">YAMAHA FOUR STROKE WHITE</span>
+                                    <span class="engine-detail">F115XB2 115HP 25"</span>
+                                </div>
+                                <div class="engine-price">$49,395</div>
+                            </div>
+
+                            <div class="engine-option" data-id="eng-yamaha-150" data-graphic="yamaha_grayXC" data-price="53595" data-mfg="yamaha">
+                                <div class="engine-check"><i class="fa fa-check-square"></i></div>
+                                <div class="engine-logo">
+                                    <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/yamaha.jpg" alt="Yamaha" onerror="this.parentElement.innerHTML='<span class=\'engine-brand\'>YAMAHA</span>'">
+                                </div>
+                                <div class="engine-info">
+                                    <span class="engine-name">YAMAHA FOUR STROKE</span>
+                                    <span class="engine-detail">F150XD 150HP 25" with Integrated Hydraulic Steering</span>
+                                </div>
+                                <div class="engine-price">$53,595</div>
+                            </div>
+
+                            <div class="engine-option" data-id="eng-mercury-115" data-graphic="" data-price="49795" data-mfg="mercury">
+                                <div class="engine-check"><i class="fa fa-check-square"></i></div>
+                                <div class="engine-logo">
+                                    <span class="engine-brand">MERCURY</span>
+                                </div>
+                                <div class="engine-info">
+                                    <span class="engine-name">MERCURY FOUR STROKE</span>
+                                    <span class="engine-detail">Command Thrust EXLPT EFI 115HP 25"</span>
+                                </div>
+                                <div class="engine-price">$49,795</div>
+                            </div>
+
+                            <div class="engine-option" data-id="eng-mercury-150" data-graphic="" data-price="53695" data-mfg="mercury">
+                                <div class="engine-check"><i class="fa fa-check-square"></i></div>
+                                <div class="engine-logo">
+                                    <span class="engine-brand">MERCURY</span>
+                                </div>
+                                <div class="engine-info">
+                                    <span class="engine-name">MERCURY FOUR STROKE</span>
+                                    <span class="engine-detail">150XL 150HP 25"</span>
+                                </div>
+                                <div class="engine-price">$53,695</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prop Options -->
+                    <div class="option-group">
+                        <div class="option-group-header">
+                            <h3>Propeller Upgrades</h3>
+                        </div>
+                        <div class="checkbox-options" data-group="props">
+                            <label class="checkbox-option" data-id="prop-yamaha-115" data-price="555" data-engine-req="yamaha" data-hp-max="115">
+                                <input type="checkbox" name="prop">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Stainless Steel Prop - Yamaha 115HP</span>
+                                <span class="option-price">$555</span>
+                            </label>
+                            <label class="checkbox-option" data-id="prop-yamaha-150" data-price="555" data-engine-req="yamaha" data-hp-max="150">
+                                <input type="checkbox" name="prop">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Stainless Steel Prop - Yamaha 150HP</span>
+                                <span class="option-price">$555</span>
+                            </label>
+                            <label class="checkbox-option" data-id="prop-mercury-115" data-price="835" data-engine-req="mercury" data-hp-max="115">
+                                <input type="checkbox" name="prop">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Stainless Steel Prop - Mercury 115HP</span>
+                                <span class="option-price">$835</span>
+                            </label>
+                            <label class="checkbox-option" data-id="prop-mercury-150" data-price="835" data-engine-req="mercury" data-hp-max="150">
+                                <input type="checkbox" name="prop">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Stainless Steel Prop - Mercury 150HP</span>
+                                <span class="option-price">$835</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============== COCKPIT INTERIOR ============== -->
+                <div class="option-section" id="section-interior">
+                    <h2 class="option-section-title">Cockpit Interior</h2>
+                    
+                    <div class="option-group">
+                        <div class="option-group-header">
+                            <h3>Interior Color</h3>
+                        </div>
+                        <div class="option-swatches" data-group="interior-color" data-type="radio">
+                            <div class="swatch selected" data-id="int-sterling" data-graphic="" data-price="0">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/ssi/SSi-Vinyl-Sterling.jpg" alt="Sterling">
+                                <span class="swatch-label">Sterling</span>
+                            </div>
+                            <div class="swatch" data-id="int-cayenne" data-graphic="interior_cayenne" data-price="265">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <img src="https://www.chaparralboats.com/images/inventoryImages/thumbs/ssi/SSi-Vinyl-Cayenne.jpg" alt="Cayenne White Storm">
+                                <span class="swatch-label">Cayenne White Storm</span>
+                                <span class="swatch-price">$265</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============== CANVAS ============== -->
+                <div class="option-section" id="section-canvas">
+                    <h2 class="option-section-title">Canvas / Tops / Towers</h2>
+                    
+                    <div class="option-group">
+                        <div class="option-group-header">
+                            <h3>Canvas Color</h3>
+                        </div>
+                        <div class="option-swatches" data-group="canvas-color" data-type="radio">
+                            <div class="swatch selected" data-id="canvas-black" data-graphic="" data-price="0">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <div class="color-swatch-block" style="background-color:#221E1F;"></div>
+                                <span class="swatch-label">Black</span>
+                            </div>
+                            <div class="swatch" data-id="canvas-gray" data-graphic="" data-price="0">
+                                <div class="swatch-check"><i class="fa fa-check-square"></i></div>
+                                <div class="color-swatch-block" style="background-color:#6B6B6B;"></div>
+                                <span class="swatch-label">Seal Gray</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <div class="option-group-header">
+                            <h3>Canvas Options</h3>
+                        </div>
+                        <div class="checkbox-options" data-group="canvas-opts">
+                            <label class="checkbox-option" data-id="bimini-top" data-price="2995">
+                                <input type="checkbox" name="canvas">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Bimini Top with Boot</span>
+                                <span class="option-price">$2,995</span>
+                            </label>
+                            <label class="checkbox-option" data-id="bow-cover" data-price="690">
+                                <input type="checkbox" name="canvas">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Bow Cover / Tonneau Cover</span>
+                                <span class="option-price">$690</span>
+                            </label>
+                            <label class="checkbox-option" data-id="cockpit-cover" data-price="1255">
+                                <input type="checkbox" name="canvas">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Cockpit Cover</span>
+                                <span class="option-price">$1,255</span>
+                            </label>
+                            <label class="checkbox-option" data-id="full-cover" data-price="1520">
+                                <input type="checkbox" name="canvas">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Full Cover - OB</span>
+                                <span class="option-price">$1,520</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============== ELECTRONICS ============== -->
+                <div class="option-section" id="section-electronics">
+                    <h2 class="option-section-title">Electronics</h2>
+                    
+                    <div class="option-group">
+                        <div class="option-group-header">
+                            <h3>Electronics Packages</h3>
+                        </div>
+                        <div class="checkbox-options" data-group="electronics">
+                            <label class="checkbox-option" data-id="garmin-7" data-price="2430">
+                                <input type="checkbox" name="electronics">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Garmin ECHOMAP UHD2 7" Chartplotter/Fishfinder</span>
+                                <span class="option-price">$2,430</span>
+                            </label>
+                            <label class="checkbox-option" data-id="garmin-9" data-price="3035">
+                                <input type="checkbox" name="electronics">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Garmin ECHOMAP UHD2 9" Chartplotter/Fishfinder</span>
+                                <span class="option-price">$3,035</span>
+                            </label>
+                            <label class="checkbox-option" data-id="stereo-upgrade" data-price="1545">
+                                <input type="checkbox" name="electronics">
+                                <span class="checkmark"></span>
+                                <span class="option-text">JL Audio Stereo Upgrade - MediaMaster with 4 Speakers</span>
+                                <span class="option-price">$1,545</span>
+                            </label>
+                            <label class="checkbox-option" data-id="sub-amp" data-price="1115">
+                                <input type="checkbox" name="electronics">
+                                <span class="checkmark"></span>
+                                <span class="option-text">JL Audio Subwoofer with Amplifier</span>
+                                <span class="option-price">$1,115</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============== ACCESSORIES ============== -->
+                <div class="option-section" id="section-accessories">
+                    <h2 class="option-section-title">Accessories</h2>
+                    
+                    <div class="option-group">
+                        <div class="option-group-header">
+                            <h3>Cockpit Accessories</h3>
+                        </div>
+                        <div class="checkbox-options" data-group="accessories">
+                            <label class="checkbox-option" data-id="ski-tow" data-price="670">
+                                <input type="checkbox" name="accessories">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Ski Tow Pylon</span>
+                                <span class="option-price">$670</span>
+                            </label>
+                            <label class="checkbox-option" data-id="table" data-price="580">
+                                <input type="checkbox" name="accessories">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Cockpit Table</span>
+                                <span class="option-price">$580</span>
+                            </label>
+                            <label class="checkbox-option" data-id="shower" data-price="505">
+                                <input type="checkbox" name="accessories">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Transom Freshwater Shower</span>
+                                <span class="option-price">$505</span>
+                            </label>
+                            <label class="checkbox-option" data-id="underwater-lights" data-price="1170">
+                                <input type="checkbox" name="accessories">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Underwater LED Lights (Pair)</span>
+                                <span class="option-price">$1,170</span>
+                            </label>
+                            <label class="checkbox-option" data-id="snap-carpet" data-price="700">
+                                <input type="checkbox" name="accessories">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Snap-In Carpet</span>
+                                <span class="option-price">$700</span>
+                            </label>
+                            <label class="checkbox-option" data-id="depth-ff" data-price="260">
+                                <input type="checkbox" name="accessories">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Digital Depth Fishfinder</span>
+                                <span class="option-price">$260</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============== TRAILER ============== -->
+                <div class="option-section" id="section-trailer">
+                    <h2 class="option-section-title">Trailer</h2>
+                    
+                    <div class="option-group">
+                        <div class="option-group-header">
+                            <h3>Trailer Selection</h3>
+                        </div>
+                        <div class="engine-options" data-group="trailer" data-type="radio">
+                            <div class="engine-option selected" data-id="trailer-std" data-graphic="std_trailer" data-price="0">
+                                <div class="engine-check"><i class="fa fa-check-square"></i></div>
+                                <div class="engine-info" style="flex:1;">
+                                    <span class="engine-name">STANDARD BLACK POWDER COATED</span>
+                                    <span class="engine-detail">Single Axle with 15" Galvanized Wheels, Disc Brakes</span>
+                                </div>
+                                <div class="engine-price">Included</div>
+                            </div>
+                            <div class="engine-option" data-id="trailer-alm-single" data-graphic="alm_trailer_single" data-price="2265">
+                                <div class="engine-check"><i class="fa fa-check-square"></i></div>
+                                <div class="engine-info" style="flex:1;">
+                                    <span class="engine-name">ALUMINUM SINGLE AXLE</span>
+                                    <span class="engine-detail">With Aluminum Wheels and Disc Brakes</span>
+                                </div>
+                                <div class="engine-price">$2,265</div>
+                            </div>
+                            <div class="engine-option" data-id="trailer-blk" data-graphic="blk_trailer" data-price="620">
+                                <div class="engine-check"><i class="fa fa-check-square"></i></div>
+                                <div class="engine-info" style="flex:1;">
+                                    <span class="engine-name">BLACK POWDER COATED UPGRADE</span>
+                                    <span class="engine-detail">With Upgraded Wheels</span>
+                                </div>
+                                <div class="engine-price">$620</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <div class="option-group-header">
+                            <h3>Trailer Options</h3>
+                        </div>
+                        <div class="checkbox-options" data-group="trailer-opts">
+                            <label class="checkbox-option" data-id="spare-tire" data-price="345">
+                                <input type="checkbox" name="trailer-opts">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Spare Tire and Mount</span>
+                                <span class="option-price">$345</span>
+                            </label>
+                            <label class="checkbox-option" data-id="side-guides" data-price="285" data-graphic="side_guides">
+                                <input type="checkbox" name="trailer-opts">
+                                <span class="checkmark"></span>
+                                <span class="option-text">Side Guides</span>
+                                <span class="option-price">$285</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Save / Quote CTA at bottom of sidebar -->
+            <div class="sidebar-cta">
+                <button class="btn-save-build" id="btn-save-build">
+                    <i class="fa fa-clipboard-list"></i> Save Build / Get Quote
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT - Boat Display -->
+        <main class="boat-display">
+            
+            <!-- Top Right - Model Info & Pricing -->
+            <div class="model-info-desktop">
+                <div class="model-info-inner">
+                    <div class="model-crest">
+                        <svg width="50" height="40" viewBox="0 0 50 40" fill="none">
+                            <path d="M25 0 L50 15 L50 25 L25 40 L0 25 L0 15 Z" fill="none" stroke="white" stroke-width="1"/>
+                            <text x="25" y="24" text-anchor="middle" fill="white" font-size="8" font-family="Montserrat">SB</text>
+                        </svg>
+                    </div>
+                    <h1 class="model-name" id="model-name">19 SSi OB</h1>
+                    <hr class="model-hr">
+                    <div class="pricing-block">
+                        <span class="pricing-label">STINGRAY ONE PRICE AS BUILT</span>
+                        <span class="pricing-value" id="price-as-built">$49,955</span>
+                        <span class="pricing-msrp" id="price-msrp">MSRP <s id="msrp-value">$64,130</s></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Model Info -->
+            <div class="model-info-mobile">
+                <div class="model-crest-small">
+                    <svg width="30" height="24" viewBox="0 0 50 40" fill="none">
+                        <path d="M25 0 L50 15 L50 25 L25 40 L0 25 L0 15 Z" fill="none" stroke="white" stroke-width="1"/>
+                        <text x="25" y="24" text-anchor="middle" fill="white" font-size="10" font-family="Montserrat">SB</text>
+                    </svg>
+                </div>
+                <h2 class="model-name-mobile" id="model-name-mobile">19 SSi OB</h2>
+            </div>
+
+            <!-- Boat Image Display -->
+            <div class="boat-image-container" id="boat-image-container">
+                <!-- All layers absolutely positioned for perfect alignment -->
+                <!-- All source PNGs are exactly 1200x460 -->
+                <img id="layer-hull" class="boat-layer" src="https://www.chaparralboats.com/images/builder/hulls/ssi19ob_25/white_hull.png" alt="Hull">
+                <img id="layer-arch" class="boat-layer" src="https://www.chaparralboats.com/images/builder/graphics/ssi19ob_25/arch_black.png" alt="">
+                <img id="layer-deckacc" class="boat-layer" src="https://www.chaparralboats.com/images/builder/graphics/ssi19ob_25/deckacc_black.png" alt="">
+                <img id="layer-hullside" class="boat-layer" src="" alt="" style="display:none;">
+                <img id="layer-vxsport" class="boat-layer" src="" alt="" style="display:none;">
+                <img id="layer-interior" class="boat-layer" src="" alt="" style="display:none;">
+                <img id="layer-engine" class="boat-layer" src="https://www.chaparralboats.com/images/builder/graphics/ssi19ob_25/yamaha_grayXB.png" alt="">
+                <img id="layer-trailer" class="boat-layer" src="https://www.chaparralboats.com/images/builder/graphics/ssi19ob_25/std_trailer.png" alt="">
+                <img id="layer-trailer-spare" class="boat-layer" src="" alt="" style="display:none;">
+                <img id="layer-side-guides" class="boat-layer" src="" alt="" style="display:none;">
+            </div>
+
+            <!-- Navigation arrows -->
+            <button class="nav-arrow nav-prev" id="nav-prev" title="Previous section">
+                <i class="fa fa-chevron-left"></i>
+            </button>
+            <button class="nav-arrow nav-next" id="nav-next" title="Next section">
+                <i class="fa fa-chevron-right"></i>
+            </button>
+
+            <!-- MSRP Toggle -->
+            <div class="msrp-toggle" id="msrp-toggle">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="show-msrp" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">Show MSRP</span>
+            </div>
+
+            <!-- Bottom CTA -->
+            <div class="bottom-cta">
+                <button class="btn-save-build-bottom" id="btn-save-build-bottom">
+                    Save Build / Get Quote
+                </button>
+                <button class="btn-return-editing" id="btn-return-editing" style="display:none;">
+                    Return To Editing
+                </button>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Standards Modal -->
+    <div class="modal-overlay" id="standards-modal" style="display:none;">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close"><i class="fa fa-times"></i></button>
+            <h2>Standard Features - 19 SSi OB</h2>
+            <div class="standards-list" id="standards-list">
+                <div class="standard-group">
+                    <h3>Exterior Colors/Graphics</h3>
+                    <ul>
+                        <li>Color Selection for Hull Side Gelcoat with Color Matched Deck Accent Graphics (Alloy Gray, Atlas Blue, Biscayne Blue, Black, Steel Blue or White)</li>
+                    </ul>
+                </div>
+                <div class="standard-group">
+                    <h3>Power</h3>
+                    <ul>
+                        <li>Three Blade Aluminum Prop</li>
+                    </ul>
+                </div>
+                <div class="standard-group">
+                    <h3>Dash / Electrical</h3>
+                    <ul>
+                        <li>Aluminum Switch Panels with Toggle Switches</li>
+                        <li>Bay Star Hydraulic Tilt Steering Helm</li>
+                        <li>Custom Molded Fiberglass Dash</li>
+                        <li>DC Power Plug - 12volt</li>
+                        <li>Digital Depth Gauge</li>
+                        <li>Digital Hour Meter</li>
+                        <li>Digital Instrumentation</li>
+                        <li>Polished Spoke Steering Wheel</li>
+                    </ul>
+                </div>
+                <div class="standard-group">
+                    <h3>Cockpit</h3>
+                    <ul>
+                        <li>Bow Cushions with Storage Underneath</li>
+                        <li>Built in Cooler (70-Quart) Under Rear Bench Seat</li>
+                        <li>Cockpit Drainage System (CDS)</li>
+                        <li>Cockpit LED Lighting</li>
+                        <li>Diamond Pattern Non-Skid Surfaces</li>
+                        <li>Interior Color Packages: Sterling or Cayenne White Storm</li>
+                        <li>Premium Stain Resistant Silicone Cockpit Fabric</li>
+                        <li>Stainless Steel Cockpit Grab Handles</li>
+                        <li>Stainless Steel Drinkholders (8)</li>
+                        <li>Stereo System - AM/FM, Bluetooth Radio</li>
+                        <li>Wrap Around Walk-Thru Windshield</li>
+                    </ul>
+                </div>
+                <div class="standard-group">
+                    <h3>Utility</h3>
+                    <ul>
+                        <li>Battery On/Off Switch</li>
+                        <li>Bilge Pump - Automatic</li>
+                        <li>Extended V-Plane Hull</li>
+                        <li>Kevlar Re-inforced Hull Laminate</li>
+                        <li>Lifetime Limited Hull Warranty</li>
+                        <li>Navigational Lights - LED</li>
+                        <li>NMMA Certified using ABYC Standards</li>
+                        <li>Stainless Steel Hardware</li>
+                    </ul>
+                </div>
+                <div class="standard-group">
+                    <h3>Canvas / Tops / Towers</h3>
+                    <ul>
+                        <li>Shipping Cover</li>
+                    </ul>
+                </div>
+                <div class="standard-group">
+                    <h3>Trailer</h3>
+                    <ul>
+                        <li>Black Powder Coated Single Axle Trailer with 15" Galvanized Wheels, Disc Brakes, Folding Tongue Jack, LED Lights, Swing-Away Tongue</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save Build Modal -->
+    <div class="modal-overlay" id="save-modal" style="display:none;">
+        <div class="modal-content save-modal-content">
+            <button class="modal-close" id="save-modal-close"><i class="fa fa-times"></i></button>
+            <h2>Save Your Build / Get a Quote</h2>
+            <p class="modal-subtitle">Complete the form below & a dealer will contact you</p>
+            <form id="save-build-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name *</label>
+                        <input type="text" name="firstname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name *</label>
+                        <input type="text" name="lastname" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Zip / Postal Code *</label>
+                        <input type="text" name="zip" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" name="phone">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Comments</label>
+                    <textarea name="comments" rows="4"></textarea>
+                </div>
+                <div class="build-summary" id="build-summary">
+                    <!-- Populated by JS -->
+                </div>
+                <button type="submit" class="btn-submit-build">Submit &amp; Get Quote</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cookie Notice -->
+    <div id="cookie-notice" class="cookie-notice">
+        <p>By Clicking 'Continue' or continuing to use our site, you acknowledge and accept our Cookie Policy. We use cookies to provide you with the best possible experience on our website. You can find out more about the cookies and how to manage them by clicking <a href="#" style="color:#7fb800;">HERE</a>.</p>
+        <button id="cookie-accept" class="btn-accept">ACCEPT</button>
+    </div>
+
+    <script src="js/configurator.js"></script>
+</body>
+</html>
